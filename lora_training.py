@@ -112,13 +112,10 @@ def train(
     if len(wandb_log_model) > 0:
         os.environ["WANDB_LOG_MODEL"] = wandb_log_model
 
-    # read datasets
-    with open('data/OIG-chip2/unified_chip2.jsonl', 'r') as fp:
-        data = [json.loads(x) for x in fp.readlines()]
-
     model = AutoModelForCausalLM.from_pretrained(
         base_model, 
         load_in_8bit=True,
+        torch_dtype=torch.float16,
         device_map='auto',
     )
 
@@ -250,7 +247,9 @@ def train(
             group_by_length=group_by_length,
             report_to="wandb" if use_wandb else None,
         ),
-        data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True)
+        data_collator=transformers.DataCollatorForSeq2Seq(
+            tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True
+        ),
     )
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
