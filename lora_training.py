@@ -40,8 +40,8 @@ def train(
     output_dir: str = "./weights",
     
     # training hyperparams
-    batch_size: int = 128,
-    micro_batch_size: int = 16,
+    batch_size: int = 16,
+    micro_batch_size: int = 4,
     num_epochs: int = 1,
     learning_rate: float = 2e-4,
     cutoff_len: int = 512,
@@ -63,7 +63,7 @@ def train(
     # wandb params
     wandb_project: str = "RPj-3B-Add",
     #wandb_run_name: str = "",
-    wandb_watch: str = "all",  # options: false | gradients | all
+    wandb_watch: str = "false",  # options: false | gradients | all
     wandb_log_model: str = "true",  # options: false | true
     resume_from_checkpoint: str = None,  # either training checkpoint or final adapter
 ):
