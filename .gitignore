@@ -1,0 +1,9 @@
+# Python specific
+*.pyc
+__pycache__/
+
+# Virtual environment
+.venv/
+
+# Project data
+data/
