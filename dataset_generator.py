@@ -2,18 +2,19 @@ import json
 import os.path as osp
 import random
 from typing import Union
+import fire
 
-def addition():
+def addition(volume):
     # Addition up to 16 digits
 
     pairs = \
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(1000)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(1000)]
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(volume)]
 
     random.shuffle(pairs)
 
@@ -38,15 +39,15 @@ def addition():
     
     return data_add
 
-def subtraction():
+def subtraction(volume):
     pairs = \
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(100)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(100)]
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(volume)]
 
     random.shuffle(pairs)
 
@@ -69,27 +70,29 @@ def subtraction():
     
     return data_sub
 
-def main():
-    data_add = addition()
-    data_sub = subtraction()
+def main(
+        dataset_name = "dataset.json",
+        data_path = "./data/",
+        need_add = True,
+        need_sub = True,
+        add_volume = 100,
+        sub_volume = 100,
+):
+    data_add, data_sub = [], []
+    if need_add:
+        data_add = addition(add_volume)
+    if need_sub:
+        data_sub = subtraction(sub_volume)
 
     # dump arithmetic data into json
 
     template_name = "./templates/goat.json"
-    data_path = "./data/"
-    dataset_name = "dataset.json"
-
-    with open(data_path + "addition.json", "w") as f:
-        json.dump(data_add, f, indent=4)
-    
-    with open(data_path + "subtraction.json", "w") as f:
-        json.dump(data_sub, f, indent=4)
 
     with open(data_path + dataset_name, "w") as f:
         json.dump(data_add + data_sub, f, indent=4)
 
     print("Total:", len(data_add + data_sub))
-    
+
     print("Adding instructions and noise")
 
     ### Add natural language instruction to the generated arithmetic data using template
@@ -147,4 +150,4 @@ def main():
     print("Dataset generated!")
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
