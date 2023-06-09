@@ -8,13 +8,13 @@ def addition(volume):
     # Addition up to 16 digits
 
     pairs = \
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(volume)] +\
-    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(volume)]
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(1,10) for j in range(i,10) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(3,10) for j in range(i,10) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(6,10) for j in range(i,10) for k in range(volume)] +\
+    [(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(9,10) for j in range(i,10) for k in range(volume)] #+\
+    #[(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(12,20) for j in range(i,20) for k in range(volume)] +\
+    #[(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(15,20) for j in range(i,20) for k in range(volume)] +\
+    #[(random.randint(10**(i-1), 10**i), random.randint(10**(j-1), 10**j)) for i in range(18,20) for j in range(i,20) for k in range(volume)]
 
     random.shuffle(pairs)
 
